@@ -1,5 +1,6 @@
 import React from "react";
 import "./index.scss";
+import Button from "@material-ui/core/Button";
 
 export default ({ article: { image, title, description } }) => {
   return (
@@ -8,9 +9,13 @@ export default ({ article: { image, title, description } }) => {
       <h2>{title}</h2>
       <div>{description}</div>
       <div>
-        <button type="button">View</button>
-        <button type="button">Edit</button>
-        <button type="button">Remove</button>
+        <Button className="btn" variant="contained" color="primary">
+          {"View"}
+        </Button>
+        <Button variant="contained">{"Edit"} </Button>
+        <Button variant="contained" color="secondary">
+          {"Remove"}
+        </Button>
       </div>
     </div>
   );
