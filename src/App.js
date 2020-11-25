@@ -1,12 +1,18 @@
 import React from "react";
 import { Switch } from "react-router";
-import { Main } from "./containers/Main/containers";
 import { privateRouter, publicRouter } from "./router";
 import routeAssessor from "./router/routeAssessor";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { Main } from "./containers/Main/containers";
+import { Auth } from "./containers/Auth/containers";
+
+const theme = createMuiTheme({});
 
 export default () => (
-  <Switch>
-    {publicRouter.map((route) => routeAssessor(null, route))}
-    <Main>{privateRouter().map((route) => routeAssessor(null, route))}</Main>
-  </Switch>
+  <MuiThemeProvider theme={theme}>
+    <Switch>
+      {/*<Auth>{publicRouter.map((route) => routeAssessor(null, route))}</Auth>*/}
+      <Main>{privateRouter().map((route) => routeAssessor(null, route))}</Main>
+    </Switch>
+  </MuiThemeProvider>
 );

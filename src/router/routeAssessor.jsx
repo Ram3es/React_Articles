@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router";
+import { Route, Switch } from "react-router";
 
 const routeAssessor = (parentRoutePath, route) => {
   const { children, component, exact, path } = route;
@@ -7,9 +7,27 @@ const routeAssessor = (parentRoutePath, route) => {
   const fullPath = parentRoutePath ? `${parentRoutePath}${path}` : path;
 
   if (!children.length) {
-    return <Route key={fullPath} path={fullPath} exact={exact} component={component} />;
+    return (
+      <Route
+        key={fullPath}
+        path={fullPath}
+        exact={exact}
+        component={component}
+      />
+    );
   } else {
-    return children.map((childRoute) => routeAssessor(path, childRoute));
+    return (
+      <Switch key={"parent"}>
+        <Route
+          key={fullPath}
+          path={fullPath}
+          exact={exact}
+          component={component}
+        />
+        {children.map((childRoute) => routeAssessor(path, childRoute))};
+      </Switch>
+    );
   }
 };
+
 export default routeAssessor;

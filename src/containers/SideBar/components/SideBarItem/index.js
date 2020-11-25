@@ -1,1 +1,1 @@
-export { default as SideBarItem } from "./SideBarItem.jsx";
+export { default as SideBarItem } from "./SideBarItem";
